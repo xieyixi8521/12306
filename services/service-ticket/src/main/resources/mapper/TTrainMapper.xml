@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xyx.common.ticket.mapper.TTrainMapper">
+
+    <resultMap id="BaseResultMap" type="com.xyx.index12306.model.ticket.entry.TTrain">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="trainNumber" column="train_number" jdbcType="VARCHAR"/>
+            <result property="trainType" column="train_type" jdbcType="INTEGER"/>
+            <result property="trainTag" column="train_tag" jdbcType="VARCHAR"/>
+            <result property="trainBrand" column="train_brand" jdbcType="VARCHAR"/>
+            <result property="startStation" column="start_station" jdbcType="VARCHAR"/>
+            <result property="endStation" column="end_station" jdbcType="VARCHAR"/>
+            <result property="startRegion" column="start_region" jdbcType="VARCHAR"/>
+            <result property="endRegion" column="end_region" jdbcType="VARCHAR"/>
+            <result property="saleTime" column="sale_time" jdbcType="TIMESTAMP"/>
+            <result property="saleStatus" column="sale_status" jdbcType="INTEGER"/>
+            <result property="departureTime" column="departure_time" jdbcType="TIMESTAMP"/>
+            <result property="arrivalTime" column="arrival_time" jdbcType="TIMESTAMP"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="delFlag" column="del_flag" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,train_number,train_type,
+        train_tag,train_brand,start_station,
+        end_station,start_region,end_region,
+        sale_time,sale_status,departure_time,
+        arrival_time,create_time,update_time,
+        del_flag
+    </sql>
+</mapper>

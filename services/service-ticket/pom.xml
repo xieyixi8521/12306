@@ -5,23 +5,27 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.xyx</groupId>
-        <artifactId>12306</artifactId>
+        <artifactId>services</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>common</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>service-ticket</artifactId>
+
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
-        <!--hutool-->
         <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>5.8.26</version>
+            <groupId>com.xyx</groupId>
+            <artifactId>model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.xyx</groupId>
+            <artifactId>common-util</artifactId>
+            <version>1.0-SNAPSHOT</version>
+
         </dependency>
     </dependencies>
 </project>

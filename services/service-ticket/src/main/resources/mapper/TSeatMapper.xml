@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xyx.common.ticket.mapper.TSeatMapper">
+
+    <resultMap id="BaseResultMap" type="com.xyx.index12306.model.ticket.entry.TSeat">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="trainId" column="train_id" jdbcType="BIGINT"/>
+            <result property="carriageNumber" column="carriage_number" jdbcType="VARCHAR"/>
+            <result property="seatNumber" column="seat_number" jdbcType="VARCHAR"/>
+            <result property="seatType" column="seat_type" jdbcType="INTEGER"/>
+            <result property="startStation" column="start_station" jdbcType="VARCHAR"/>
+            <result property="endStation" column="end_station" jdbcType="VARCHAR"/>
+            <result property="price" column="price" jdbcType="INTEGER"/>
+            <result property="seatStatus" column="seat_status" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="delFlag" column="del_flag" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,train_id,carriage_number,
+        seat_number,seat_type,start_station,
+        end_station,price,seat_status,
+        create_time,update_time,del_flag
+    </sql>
+</mapper>
