@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.xyx.common.config.RedissonConfiguration,\
+ com.xyx.common.AutoCacheConfiguration

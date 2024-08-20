@@ -1,0 +1,153 @@
+databaseName: logic_db
+mode:
+  type: Standalone
+
+dataSources:
+  ds_0: # 数据源名称
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource # 数据源完整类名
+    driverClassName: com.mysql.jdbc.Driver # 数据库驱动类名，以数据库连接池自身配置为准
+    jdbcUrl: jdbc:mysql://1.94.111.144:3306/12306_user_0?useSSL=false # 数据库 URL 连接，以数据库连接池自身配置为准
+    username: root # 数据库用户名，以数据库连接池自身配置为准
+    password: 123456 # 数据库密码，以数据库连接池自身配置为准
+  ds_1:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource # 数据源完整类名
+    driverClassName: com.mysql.jdbc.Driver # 数据库驱动类名，以数据库连接池自身配置为准
+    jdbcUrl: jdbc:mysql://1.94.111.144:3306/12306_user_1?useSSL=false # 数据库 URL 连接，以数据库连接池自身配置为准
+    username: root # 数据库用户名，以数据库连接池自身配置为准
+    password: 123456 # 数据库密码，以数据库连接池自身配置为准
+#
+#  master1_s1:
+#    dataSourceClassName: com.zaxxer.hikari.HikariDataSource # 数据源完整类名
+#    driverClassName: com.mysql.jdbc.Driver # 数据库驱动类名，以数据库连接池自身配置为准
+#    jdbcUrl: jdbc:mysql://192.168.200.100:3307/gmall_order_1?useSSL=false # 数据库 URL 连接，以数据库连接池自身配置为准
+#    username: root # 数据库用户名，以数据库连接池自身配置为准
+#    password: 123456 # 数据库密码，以数据库连接池自身配置为准
+#  master1_s2:
+#    dataSourceClassName: com.zaxxer.hikari.HikariDataSource # 数据源完整类名
+#    driverClassName: com.mysql.jdbc.Driver # 数据库驱动类名，以数据库连接池自身配置为准
+#    jdbcUrl: jdbc:mysql://192.168.200.100:3308/gmall_order_1?useSSL=false # 数据库 URL 连接，以数据库连接池自身配置为准
+#    username: root # 数据库用户名，以数据库连接池自身配置为准
+#    password: 123456 # 数据库密码，以数据库连接池自身配置为准
+#
+#  master2_s1:
+#    dataSourceClassName: com.zaxxer.hikari.HikariDataSource # 数据源完整类名
+#    driverClassName: com.mysql.jdbc.Driver # 数据库驱动类名，以数据库连接池自身配置为准
+#    jdbcUrl: jdbc:mysql://192.168.200.100:3307/gmall_order_2?useSSL=false # 数据库 URL 连接，以数据库连接池自身配置为准
+#    username: root # 数据库用户名，以数据库连接池自身配置为准
+#    password: 123456 # 数据库密码，以数据库连接池自身配置为准
+#  master2_s2:
+#    dataSourceClassName: com.zaxxer.hikari.HikariDataSource # 数据源完整类名
+#    driverClassName: com.mysql.jdbc.Driver # 数据库驱动类名，以数据库连接池自身配置为准
+#    jdbcUrl: jdbc:mysql://192.168.200.100:3308/gmall_order_2?useSSL=false # 数据库 URL 连接，以数据库连接池自身配置为准
+#    username: root # 数据库用户名，以数据库连接池自身配置为准
+#    password: 123456 # 数据库密码，以数据库连接池自身配置为准
+# 配置 读写分离 规则； 读就要负载均衡
+rules:
+  - !SHARDING
+    tables:
+      t_user:
+        actualDataNodes: ds_${0..1}.t_user_${0..15}
+        databaseStrategy:
+          standard:
+            shardingColumn: username
+            shardingAlgorithmName: user_database_hash_mod
+        tableStrategy:
+          standard:
+            shardingColumn: username
+            shardingAlgorithmName: user_table_hash_mod
+      t_passenger:
+        actualDataNodes: ds_${0..1}.t_passenger_${0..15}
+        databaseStrategy:
+          standard:
+            shardingColumn: username
+            shardingAlgorithmName: passenger_database_hash_mod
+        tableStrategy:
+          standard:
+            shardingColumn: username
+            shardingAlgorithmName: passenger_table_hash_mod
+      t_user_mail:
+        actualDataNodes: ds_${0..1}.t_user_mail_${0..15}
+        databaseStrategy:
+          standard:
+            shardingColumn: mail
+            shardingAlgorithmName: t_user_mail_database_hash_mod
+        tableStrategy:
+          standard:
+            shardingColumn: mail
+            shardingAlgorithmName: t_user_mail_table_hash_mod
+      t_user_phone:
+        actualDataNodes: ds_${0..1}.t_user_phone_${0..15}
+        databaseStrategy:
+          standard:
+            shardingColumn: phone
+            shardingAlgorithmName: t_user_phone_database_hash_mod
+        tableStrategy:
+          standard:
+            shardingColumn: phone
+            shardingAlgorithmName: t_user_phone_table_hash_mod
+
+    shardingAlgorithms:
+      user_database_hash_mod:
+        type: HASH_MOD
+        props:
+          sharding-count: 2
+      passenger_database_hash_mod:
+        type: HASH_MOD
+        props:
+          sharding-count: 2
+      t_user_mail_database_hash_mod:
+        type: HASH_MOD
+        props:
+          sharding-count: 2
+      t_user_phone_database_hash_mod:
+        type: HASH_MOD
+        props:
+          sharding-count: 2
+      passenger_table_hash_mod:
+        type: HASH_MOD
+        props:
+          sharding-count: 16
+      t_user_mail_table_hash_mod:
+        type: HASH_MOD
+        props:
+          sharding-count: 16
+      t_user_phone_table_hash_mod:
+        type: HASH_MOD
+        props:
+          sharding-count: 16
+      user_table_hash_mod:
+        type: HASH_MOD
+        props:
+          sharding-count: 16
+#  - !ENCRYPT
+#    tables:
+#      t_user:
+#        columns:
+#          id_card:
+#            cipherColumn: id_card
+#            encryptorName: common_encryptor
+#          phone:
+#            cipherColumn: phone
+#            encryptorName: common_encryptor
+#          mail:
+#            ciphercolumn: mail
+#            encryptorName: common_encryptor
+#          address:
+#            cipherColumn: address
+#            encryptorName: common_encryptor
+#      t_passenger:
+#        columns:
+#          id_card:
+#            cipherColumn: id_card
+#            encryptorName: common_encryptor
+#          phone:
+#            cipherColumn: phone
+#            encryptorName: common_encryptor
+#        queryWithCipherColumn: true
+#    encryptors:
+#      common_encryptor:
+#        type: AES
+#        props:
+#          aes-key-value: d6oadClrrb9A3GWo
+props:
+  sql-show: true

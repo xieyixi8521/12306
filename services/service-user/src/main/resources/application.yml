@@ -1,0 +1,31 @@
+server:
+  port: 8202
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+#  datasource:
+#    url: jdbc:mysql://1.94.111.144:3306/12306_user?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+#    username: root
+#    password: 123456
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+   #分库分表
+  datasource:
+    # 指定 ShardingSphere 自定义驱动类
+    driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
+    # 指定 ShardingSphere 自定义配置文件路径地址
+    url: jdbc:shardingsphere:classpath:shardingsphere-config.yaml
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+
+logging:
+  level:
+    com.xyx.ticket.user.mapper: debug

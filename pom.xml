@@ -19,6 +19,10 @@
         <module>services</module>
         <module>model</module>
         <module>common</module>
+        <module>common/design-patterns</module>
+        <module>common/service-util</module>
+        <module>frameworks</module>
+        <module>frameworks/cache-start</module>
     </modules>
 
     <properties>
