@@ -36,7 +36,6 @@ public final class AbstractChainContext<T> implements CommandLineRunner {
 
     /**
      * 责任链组件执行
-     *
      * @param mark         责任链组件标识
      * @param requestParam 请求参数
      */

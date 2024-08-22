@@ -1,9 +1,7 @@
 package com.xyx.index12306.model.ticket.entry;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
@@ -54,6 +52,7 @@ public class TCarriage implements Serializable {
     /**
      * 删除标识
      */
+    @TableLogic
     private Integer delFlag;
 
     @TableField(exist = false)

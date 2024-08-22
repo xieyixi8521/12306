@@ -12,8 +12,8 @@
     <artifactId>frameworks</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>cache-start</module>
         <module>cache-start2</module>
+        <module>idempotent-start</module>
     </modules>
 
     <properties>

@@ -17,7 +17,9 @@
 
 package com.xyx.common.design.config;
 import com.xyx.common.design.chain.AbstractChainContext;
+import com.xyx.common.design.factory.ApplicationContextHolder;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -42,5 +44,11 @@ public class DesignPatternAutoConfiguration {
     @Bean
     public AbstractChainContext abstractChainContext() {
         return new AbstractChainContext();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public ApplicationContextHolder congoApplicationContextHolder() {
+        return new ApplicationContextHolder();
     }
 }
